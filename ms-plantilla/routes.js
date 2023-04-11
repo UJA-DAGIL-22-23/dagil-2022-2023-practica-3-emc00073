@@ -33,8 +33,6 @@ router.get("/acercade", async (req, res) => {
     }
 });
 
-
-
 /**
  * Test de conexión a la BBDD
  */
@@ -46,6 +44,16 @@ router.get("/test_db", async (req, res) => {
     }
 });
 
+/**
+ * Devuelve todas los atletas que hay en la BBDD
+ */
+router.get("/getTodos", async (req, res) => {
+    try {
+        await callbacks.getTodos(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 // Exporto el módulo para poder usarlo en server
 module.exports = router;

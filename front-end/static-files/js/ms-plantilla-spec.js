@@ -34,6 +34,87 @@ function esperar(ms) {
 
 // SPECS a probar
 
+// SPECS para Jasmine
+describe("Cabecera table ", function () {
+    it("debería devolver las etiquetas HTML para la cabecera de la tabla",
+        function () {
+            expect(Plantilla.cabeceraTable()).toBe(`<table class="listado-atletas">
+        <thead>
+            <th>Nombre</th>
+            <th>Fecha de nacimiento</th>
+            <th>Nacionalidad</th>
+            <th>Mundiales participados</th>
+            <th>Años mundiales</th>
+            <th>Categoría</th>
+        </thead>
+        <tbody>
+    `);
+    });
+});
+
+describe("Pie table ", function () {
+    it("debería devolver las etiquetas HTML para el pie de tabla",
+        function () {
+            expect(Plantilla.pieTable()).toBe("</tbody></table>");
+        });
+});
+
+describe("cuerpoTr ", function () {
+
+    // Preparo los datos
+    let d = {ref: {
+        "@ref": {
+            id: "ref atleta 1"
+        }
+    },
+    data: {
+        nombre: "Juan Pérez",
+        fecha_nacimiento: {
+          dia: 12,
+          mes: 5,
+          año: 1990
+        },
+        nacionalidad: "México",
+        mundiales_participados: 3,
+        años_mundiales: [2015, 2017, 2019],
+        categoría: "100 metros lisos"
+      }
+    }
+
+    let msj = Plantilla.cuerpoTr(d)
+    
+    // Realizo los expect
+    it("debería devolver una fila de tabla con el nombre del atleta",
+        function () {
+            expect(msj.includes(d.data.nombre)).toBeTrue();
+        });
+
+    it("debería devolver una fila de tabla con la fecha de nacimiento del atleta",
+        function () {
+            expect(msj.includes(`${d.data.fecha_nacimiento.dia}/${d.data.fecha_nacimiento.mes}/${d.data.fecha_nacimiento.año}`)).toBeTrue();
+        });
+
+    it("debería devolver una fila de tabla con la nacionalidad del atleta",
+        function () {
+            expect(msj.includes(d.data.nacionalidad)).toBeTrue();
+        });
+
+    it("debería devolver una fila de tabla con el número de mundiales participados por el atleta",
+        function () {
+            expect(msj.includes(d.data.mundiales_participados)).toBeTrue();
+        });
+
+    it("debería devolver una fila de tabla con los años de los mundiales en los que participó el atleta",
+        function () {
+            expect(msj.includes(d.data.años_mundiales.join(" / "))).toBeTrue();
+        });
+
+    it("debería devolver una fila de tabla con la categoría del atleta",
+        function () {
+            expect(msj.includes(d.data.categoría)).toBeTrue();
+        });
+});
+
 describe("Plantilla.mostrarHome: ", function () {
 
     it("muestra datos nulos cuando le pasamos un valor nulo",
