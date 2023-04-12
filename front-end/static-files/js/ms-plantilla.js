@@ -10,6 +10,13 @@
 /// Creo el espacio de nombres
 let Plantilla = {};
 
+let ascendente_nombre = false;
+let ascendente_nacionalidad = false;
+let ascendente_categoria = false;
+let ascendente_mundialesParticipados = false;
+let ascendente_fechaNacimiento = false;
+let ascendente_añosMundiales = false;
+
 // Plantilla de datosDescargados vacíos
 Plantilla.datosDescargadosNulos = {
     mensaje: "Datos Descargados No válidos",
@@ -57,7 +64,15 @@ Plantilla.recupera = async function (callBackFn) {
  * @param {Vector_de_atletas} vector Vector con los datos de los atletas a mostrar
  */
 Plantilla.imprime = function (vector) {
+    ascendente_nombre = false;
+    ascendente_nacionalidad = false;
+    ascendente_categoria = false;
+    ascendente_mundialesParticipados = false;
+    ascendente_fechaNacimiento = false;
+    ascendente_añosMundiales = false;
+
     console.log( vector ) // Para comprobar lo que hay en vector
+
     let msj = "";
     msj += Plantilla.cabeceraTable();
     vector.forEach(e => msj += Plantilla.cuerpoTr(e))
@@ -65,7 +80,276 @@ Plantilla.imprime = function (vector) {
 
     // Borro toda la info de Article y la sustituyo por la que me interesa
     Frontend.Article.actualizar( "Listado de atletas", msj )
+}
 
+/**
+ * Función para recuperar y mostrar en pantalla todos los atletas ordenados por nombre que se han recuperado de la BBDD.
+ */
+Plantilla.imprimeOrdenadoNombre = async function () {
+
+    let response = null
+
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los atletas que se han descargado
+    let raw_vector = null
+    if (response) {
+        raw_vector = await response.json()
+        let vector = raw_vector.data
+    
+        ascendente_nombre = !ascendente_nombre
+        vector.sort((a, b) => ascendente_nombre ? a.data.nombre.localeCompare(b.data.nombre) : b.data.nombre.localeCompare(a.data.nombre));
+
+        let msj = "";
+        msj += Plantilla.cabeceraTable();
+        vector.forEach(e => msj += Plantilla.cuerpoTr(e))
+        msj += Plantilla.pieTable();
+
+        // Borro toda la info de Article y la sustituyo por la que me interesa
+        Frontend.Article.actualizar( "Listado de atletas", msj )
+    }
+}
+
+/**
+ * Función para recuperar y mostrar en pantalla todos los atletas ordenados por nacionalidad que se han recuperado de la BBDD.
+ */
+Plantilla.imprimeOrdenadoNacionalidad = async function () {
+
+    let response = null
+
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los atletas que se han descargado
+    let raw_vector = null
+    if (response) {
+        raw_vector = await response.json()
+        let vector = raw_vector.data
+    
+        ascendente_nacionalidad = !ascendente_nacionalidad
+        vector.sort((a, b) => ascendente_nacionalidad ? a.data.nacionalidad.localeCompare(b.data.nacionalidad) : b.data.nacionalidad.localeCompare(a.data.nacionalidad));
+
+        let msj = "";
+        msj += Plantilla.cabeceraTable();
+        vector.forEach(e => msj += Plantilla.cuerpoTr(e))
+        msj += Plantilla.pieTable();
+
+        // Borro toda la info de Article y la sustituyo por la que me interesa
+        Frontend.Article.actualizar( "Listado de atletas", msj )
+    }
+}
+
+/**
+ * Función para recuperar y mostrar en pantalla todos los atletas ordenados por categoría que se han recuperado de la BBDD.
+ */
+Plantilla.imprimeOrdenadoCategoria = async function () {
+
+    let response = null
+
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los atletas que se han descargado
+    let raw_vector = null
+    if (response) {
+        raw_vector = await response.json()
+        let vector = raw_vector.data
+    
+        ascendente_categoria = !ascendente_categoria
+        vector.sort((a, b) => ascendente_categoria ? a.data.categoría.localeCompare(b.data.categoría) : b.data.categoría.localeCompare(a.data.categoría));
+
+        let msj = "";
+        msj += Plantilla.cabeceraTable();
+        vector.forEach(e => msj += Plantilla.cuerpoTr(e))
+        msj += Plantilla.pieTable();
+
+        // Borro toda la info de Article y la sustituyo por la que me interesa
+        Frontend.Article.actualizar( "Listado de atletas", msj )
+    }
+}
+
+/**
+ * Función para recuperar y mostrar en pantalla todos los atletas ordenados por el número de mundiales en los que han participado que se han recuperado de la BBDD.
+ */
+Plantilla.imprimeOrdenadoMundialesParticipados = async function () {
+
+    let response = null
+
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los atletas que se han descargado
+    let raw_vector = null
+    if (response) {
+        raw_vector = await response.json()
+        let vector = raw_vector.data
+    
+        ascendente_mundialesParticipados = !ascendente_mundialesParticipados
+        vector.sort((a, b) => ascendente_mundialesParticipados ? a.data.mundiales_participados - b.data.mundiales_participados : b.data.mundiales_participados - a.data.mundiales_participados);
+
+        let msj = "";
+        msj += Plantilla.cabeceraTable();
+        vector.forEach(e => msj += Plantilla.cuerpoTr(e))
+        msj += Plantilla.pieTable();
+
+        // Borro toda la info de Article y la sustituyo por la que me interesa
+        Frontend.Article.actualizar( "Listado de atletas", msj )
+    }
+}
+
+/**
+ * Función para recuperar y mostrar en pantalla todos los atletas ordenados por su fecha nacimiento que se han recuperado de la BBDD.
+ */
+Plantilla.imprimeOrdenadoFechaNacimiento = async function () {
+
+    let response = null
+
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los atletas que se han descargado
+    let raw_vector = null
+    if (response) {
+        raw_vector = await response.json()
+        let vector = raw_vector.data
+    
+        ascendente_fechaNacimiento = !ascendente_fechaNacimiento
+        console.log(vector);
+        vector.sort((a, b) => ascendente_fechaNacimiento ? compareFechas(a.data.fecha_nacimiento, b.data.fecha_nacimiento) : compareFechas(b.data.fecha_nacimiento, a.data.fecha_nacimiento));
+
+        let msj = "";
+        msj += Plantilla.cabeceraTable();
+        vector.forEach(e => msj += Plantilla.cuerpoTr(e))
+        msj += Plantilla.pieTable();
+
+        // Borro toda la info de Article y la sustituyo por la que me interesa
+        Frontend.Article.actualizar( "Listado de atletas", msj )
+    }
+}
+
+function compareFechas(fecha1, fecha2) {
+    if (fecha1.año > fecha2.año) {
+      return 1;
+    } else if (fecha1.año < fecha2.año) {
+      return -1;
+    } else {
+      if (fecha1.mes > fecha2.mes) {
+        return 1;
+      } else if (fecha1.mes < fecha2.mes) {
+        return -1;
+      } else {
+        if (fecha1.dia > fecha2.dia) {
+          return 1;
+        } else if (fecha1.dia < fecha2.dia) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
+    }
+  }
+  
+/**
+ * Función para recuperar y mostrar en pantalla todos los atletas ordenados por sus años en los mundiales que se han recuperado de la BBDD.
+ */
+Plantilla.imprimeOrdenadoAñosMundiales = async function () {
+
+    let response = null
+
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los atletas que se han descargado
+    let raw_vector = null
+    if (response) {
+        raw_vector = await response.json()
+        let vector = raw_vector.data
+    
+        ascendente_añosMundiales = !ascendente_añosMundiales
+        console.log(vector);
+        vector.sort((a, b) => ascendente_añosMundiales ? a.data.años_mundiales[0] - b.data.años_mundiales[0] : b.data.años_mundiales[0] - a.data.años_mundiales[0]);
+
+        let msj = "";
+        msj += Plantilla.cabeceraTable();
+        vector.forEach(e => msj += Plantilla.cuerpoTr(e))
+        msj += Plantilla.pieTable();
+
+        // Borro toda la info de Article y la sustituyo por la que me interesa
+        Frontend.Article.actualizar( "Listado de atletas", msj )
+    }
+}
+
+/**
+ * Función que recuperar un atleta llamando al MS Plantilla
+ */
+Plantilla.recuperaUnAtleta = async function (ID) {
+    let response = null
+
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getAtletaPorId?id=" + ID
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    let atleta = null
+    if (response) {
+        atleta = await response.json()
+
+        let msj = "";
+        msj += Plantilla.cabeceraTable();
+        msj += Plantilla.cuerpoTr(atleta);
+        msj += Plantilla.pieTable();
+
+        // Borro toda la info de Article y la sustituyo por la que me interesa
+        Frontend.Article.actualizar( "Datos del atleta", msj )
+    }
 }
 
 // Funciones para mostrar como TABLE
@@ -77,12 +361,13 @@ Plantilla.imprime = function (vector) {
 Plantilla.cabeceraTable = function () {
     return `<table class="listado-atletas">
         <thead>
-            <th>Nombre</th>
-            <th>Fecha de nacimiento</th>
-            <th>Nacionalidad</th>
-            <th>Mundiales participados</th>
-            <th>Años mundiales</th>
-            <th>Categoría</th>
+            <th onclick="Plantilla.imprimeOrdenadoNombre()">Nombre</th>
+            <th onclick="Plantilla.imprimeOrdenadoFechaNacimiento()">Fecha de nacimiento</th>
+            <th onclick="Plantilla.imprimeOrdenadoNacionalidad()">Nacionalidad</th>
+            <th onclick="Plantilla.imprimeOrdenadoMundialesParticipados()">Mundiales participados</th>
+            <th onclick="Plantilla.imprimeOrdenadoAñosMundiales()">Años mundiales</th>
+            <th onclick="Plantilla.imprimeOrdenadoCategoria()">Categoría</th>
+            <th>Mostrar</th>
         </thead>
         <tbody>
     `;
@@ -95,6 +380,7 @@ Plantilla.cabeceraTable = function () {
  */
 Plantilla.cuerpoTr = function (a) {
     const d = a.data
+    console.log(a)
 
     return `<tr title="${a.ref['@ref'].id}">
             <td><em>${d.nombre}</em></td>
@@ -103,6 +389,9 @@ Plantilla.cuerpoTr = function (a) {
             <td>${d.mundiales_participados}</td>
             <td>${d.años_mundiales.join(" / ")}</td>
             <td>${d.categoría}</td>
+            <td>
+                <div><a href="javascript:Plantilla.recuperaUnAtleta('${a.ref['@ref'].id}')">Mostrar</a></div>
+            </td>
             </tr>`;
 }
 

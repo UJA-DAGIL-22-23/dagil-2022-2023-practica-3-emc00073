@@ -82,6 +82,26 @@ const CB_MODEL_SELECTS = {
             CORS(res).status(500).json({ error: error.description })
         }
     },
+
+    /**
+     * Método para obtener un atleta por su identificador de la BBDD.
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     */
+    getAtletaPorId: async (req, res) => {
+        try {
+            const id = req.query.id //obtiene el identificador del atleta de la URL
+            const atleta = await client.query(
+                q.Get(q.Ref(q.Collection("Atletas"), id))
+            )
+            // console.log( atleta ) // Para comprobar qué se ha devuelto en atleta
+            CORS(res)
+                .status(200)
+                .json(atleta)
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    }
 }
 
 

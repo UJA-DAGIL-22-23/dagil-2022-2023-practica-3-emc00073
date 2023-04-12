@@ -45,11 +45,22 @@ router.get("/test_db", async (req, res) => {
 });
 
 /**
- * Devuelve todas los atletas que hay en la BBDD
+ * Devuelve todos los atletas que hay en la BBDD
  */
 router.get("/getTodos", async (req, res) => {
     try {
         await callbacks.getTodos(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+/**
+ * Devuelve un atleta que hay en la BBDD dado un ID
+ */
+router.get("/getAtletaPorId", async (req, res) => {
+    try {
+        await callbacks.getAtletaPorId(req, res)
     } catch (error) {
         console.log(error);
     }

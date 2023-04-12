@@ -65,6 +65,40 @@ describe('Servidor PLANTILLA:', () => {
     });
 
   })
+
+  /**
+   * Tests para probar la BBDD
+   */
+  describe('Probar la BBDD:', () => {
+      it('Devuelve todos los atletas de la BBDD', (done) => {
+        supertest(app)
+        .get('/getTodos')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect(function (res) {
+          assert(res.body.hasOwnProperty('data'));
+          assert(Array.isArray(res.body.data));
+          assert(res.body.data.length > 0);
+          assert(res.body.data[0].hasOwnProperty('data'));
+          assert(res.body.data[0].data.hasOwnProperty('nombre'));
+        })
+        .end((error) => { error ? done.fail(error) : done(); });
+        });
+
+      it('Devuelve el atleta con id "361633960436957388"', (done) => {
+        supertest(app)
+          .get('/getAtletaPorId?id=361633960436957388')
+          .expect(200)
+          .expect('Content-Type', /json/)
+          .expect(function (res) {
+            console.log(res.body.ref['@ref'].id)
+            assert(res.body.ref['@ref'].id === "361633960436957388");
+          })
+          .end((error) => { error ? done.fail(error) : done(); });
+      });
+  })
+
+
 });
 
 
