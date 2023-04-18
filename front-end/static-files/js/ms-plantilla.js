@@ -376,12 +376,14 @@ Plantilla.buscar = async function () {
         let vector = raw_vector.data
     
         let palabraBuscar = document.getElementById("busqueda");
-        console.log(palabraBuscar)
+        console.log(palabraBuscar.value)
         if (palabraBuscar) {
             // Filtra todos los atletas según el criterio de búsqueda
             const palabraBuscarTratado = palabraBuscar.value.trim().toLowerCase();
             // console.log("La palabra a filtrar es: " + palabraBuscarTratado)
-            vectorFiltrado = vector.filter(atleta => atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado));
+            vectorFiltrado = vector.filter(atleta => 
+                atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado) ||
+                atleta.data.nacionalidad.toLowerCase().includes(palabraBuscarTratado))
         }
 
         // console.log(vectorFiltrado)
