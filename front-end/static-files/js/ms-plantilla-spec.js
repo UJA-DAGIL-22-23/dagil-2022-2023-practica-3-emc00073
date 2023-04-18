@@ -39,6 +39,12 @@ describe("Cabecera table ", function () {
     it("debería devolver las etiquetas HTML para la cabecera de la tabla",
         function () {
             expect(Plantilla.cabeceraTable()).toBe(`<table class="listado-atletas">
+        <div>
+            <label for="busqueda">Buscar:</label>
+            <input type="text" id="busqueda" name="busqueda">
+            <button onclick="Plantilla.buscar()">Buscar</button>
+        </div>
+        </br>
         <thead>
             <th onclick="Plantilla.imprimeOrdenadoNombre()">Nombre</th>
             <th onclick="Plantilla.imprimeOrdenadoFechaNacimiento()">Fecha de nacimiento</th>
