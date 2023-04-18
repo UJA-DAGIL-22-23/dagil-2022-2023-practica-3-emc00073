@@ -352,6 +352,50 @@ Plantilla.recuperaUnAtleta = async function (ID) {
     }
 }
 
+/**
+ * Función que recuperar y muestra los atletas según la búsqueda pedida
+ */
+Plantilla.buscar = async function () {
+    let response = null
+
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodos"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Filtro todos los atletas recuperados
+    let raw_vector = null
+    let vectorFiltrado = []
+    if (response) {
+        raw_vector = await response.json()
+        let vector = raw_vector.data
+    
+        let palabraBuscar = document.getElementById("busqueda");
+        console.log(palabraBuscar)
+        if (palabraBuscar) {
+            // Filtra todos los atletas según el criterio de búsqueda
+            const palabraBuscarTratado = palabraBuscar.value.trim().toLowerCase();
+            // console.log("La palabra a filtrar es: " + palabraBuscarTratado)
+            vectorFiltrado = vector.filter(atleta => atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado));
+        }
+
+        // console.log(vectorFiltrado)
+
+        let msj = "";
+        msj += Plantilla.cabeceraTable();
+        vectorFiltrado.forEach(e => msj += Plantilla.cuerpoTr(e))
+        msj += Plantilla.pieTable();
+
+        // Borro toda la info de Article y la sustituyo por la que me interesa
+        Frontend.Article.actualizar( "Listado de atletas", msj )
+    }
+}
+
 // Funciones para mostrar como TABLE
 
 /**

@@ -461,6 +461,100 @@ describe("Plantilla.imprimeOrdenadoAñosMundiales: ", function () {
     });
 })
 
+
+describe("Plantilla.buscar", function () {
+        let vector = [
+          {
+            "ref": {
+                "@ref": {
+                    "id": "361633960436957388",
+                    "collection": {
+                        "@ref": {
+                            "id": "Atletas",
+                            "collection": {
+                                "@ref": {
+                                    "id": "collections"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ts": 1681140020210000,
+            "data": {
+                "nombre": "Juan Pérez",
+                "fecha_nacimiento": {
+                    "dia": 12,
+                    "mes": 5,
+                    "año": 1990
+                },
+                "nacionalidad": "México",
+                "mundiales_participados": 3,
+                "años_mundiales": [
+                    2015,
+                    2017,
+                    2019
+                ],
+                "categoría": "100 metros lisos"
+            }
+          },
+          {
+            "ref": {
+                "@ref": {
+                    "id": "361634138868941004",
+                    "collection": {
+                        "@ref": {
+                            "id": "Atletas",
+                            "collection": {
+                                "@ref": {
+                                    "id": "collections"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ts": 1681140091600000,
+            "data": {
+                "nombre": "Ana Gómez",
+                "fecha_nacimiento": {
+                    "dia": 20,
+                    "mes": 7,
+                    "año": 1995
+                },
+                "nacionalidad": "España",
+                "mundiales_participados": 2,
+                "años_mundiales": [
+                    2017,
+                    2019
+                ],
+                "categoría": "Salto de altura"
+            }
+        }
+        ];
+      
+        it("Debería filtrar el vector correctamente", () => {
+          let palabraBuscarTratado = "Juan";
+          let vectorFiltrado = vector.filter(atleta => atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado.toLowerCase()));
+          expect(vectorFiltrado.length).toBe(1);
+          expect(vectorFiltrado[0].data.nombre).toBe("Juan Pérez");
+        });
+      
+        it("Debería filtrar correctamente cuando no encuentra coincidencias", () => {
+          let palabraBuscarTratado = "Maria";
+          let vectorFiltrado = vector.filter(atleta => atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado.toLowerCase()));
+          expect(vectorFiltrado.length).toBe(0);
+        });
+      
+        it("Debería filtrar correctamente cuando la búsqueda está en mayúsculas", () => {
+          let palabraBuscarTratado = "ANA";
+          let vectorFiltrado = vector.filter(atleta => atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado.toLowerCase()));
+          expect(vectorFiltrado.length).toBe(1);
+          expect(vectorFiltrado[0].data.nombre).toBe("Ana Gómez");
+        });
+      
+      });
+
 /*
 IMPORTANTE
 ==========
