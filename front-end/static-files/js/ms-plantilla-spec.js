@@ -633,6 +633,44 @@ describe("Plantilla.buscar", function () {
 
         expect(vectorFiltrado.length).toBe(0);
     });
+
+    it("Debería filtrar correctamente por categoría", () => {
+        let palabraBuscarTratado = "Salto de altura";
+        vectorFiltrado = vector.filter(atleta => 
+            atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
+            atleta.data.nacionalidad.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
+            (parseInt(atleta.data.mundiales_participados) === parseInt(palabraBuscarTratado)) ||
+            atleta.data.categoría.toLowerCase().includes(palabraBuscarTratado.toLowerCase())
+            )
+
+        expect(vectorFiltrado.length).toBe(1);
+        expect(vectorFiltrado[0].data.categoría).toBe("Salto de altura");
+    });
+
+    it("Debería filtrar correctamente por categoría cuando la búsqueda está en mayúsculas", () => {
+        let palabraBuscarTratado = "SALTO DE ALTURA";
+        vectorFiltrado = vector.filter(atleta => 
+            atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
+            atleta.data.nacionalidad.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
+            (parseInt(atleta.data.mundiales_participados) === parseInt(palabraBuscarTratado)) ||
+            atleta.data.categoría.toLowerCase().includes(palabraBuscarTratado.toLowerCase())
+            )
+
+        expect(vectorFiltrado.length).toBe(1);
+        expect(vectorFiltrado[0].data.categoría).toBe("Salto de altura");
+    });
+
+    it("Debería filtrar correctamente por categoría cuando la búsqueda no encuentra coincidencias", () => {
+        let palabraBuscarTratado = "SALTO DE LONGITUD";
+        vectorFiltrado = vector.filter(atleta => 
+            atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
+            atleta.data.nacionalidad.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
+            (parseInt(atleta.data.mundiales_participados) === parseInt(palabraBuscarTratado)) ||
+            atleta.data.categoría.toLowerCase().includes(palabraBuscarTratado.toLowerCase())
+            )
+
+        expect(vectorFiltrado.length).toBe(0);
+    });
 });
 
 /*
