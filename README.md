@@ -100,10 +100,29 @@ Para este incremento, realizaré las HU 8, 9 y 12. Las elegí porque no tengo qu
 ### HU - 08
 La primera historia de usuario en realizar fue la 8 (buscar atletas por su nombre). Para esto he tenido que crear un método nuevo: buscar; y un botón en lo alto de la tabla por el que se le pasará la palabra a buscar. Este método se encarga de recuperar de la base de datos los atletas, filtrarlos y mostrarlos en una tabla.
 
-También hago uso de un atributo ascendente_nombre que indica el sentido del orden. Esta función se llama clickando sobre la cabecera de la columna.
-
 Aquí vemos el funcionamiento:
 
 ![Alt text](assets/img/Incremento%203%20-%2008_0.PNG) 
 
 ![Alt text](assets/img/Incremento%203%20-%2008_1.PNG)
+
+### HU - 09
+La segunda historia de usuario en realizar fue la 9 (buscar atletas por otras categorías: Nacionalidad, Mundiales Participados y Categoría). Para esto he tenido que editar el método buscar para que además de filtrar por el nombre, filtre por esos otros campos.
+
+Aquí vemos el funcionamiento por Nacionalidad:
+
+![Alt text](assets/img/Incremento%203%20-%2009_0.PNG) 
+
+![Alt text](assets/img/Incremento%203%20-%2009_1.PNG)
+
+Por Número de Mundiales Participados:
+
+![Alt text](assets/img/Incremento%203%20-%2009_2.PNG) 
+
+![Alt text](assets/img/Incremento%203%20-%2009_3.PNG)
+
+Por Categoría:
+
+![Alt text](assets/img/Incremento%203%20-%2009_4.PNG) 
+
+![Alt text](assets/img/Incremento%203%20-%2009_5.PNG)
