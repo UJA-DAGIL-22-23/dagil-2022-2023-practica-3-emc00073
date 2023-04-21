@@ -383,7 +383,8 @@ Plantilla.buscar = async function () {
             // console.log("La palabra a filtrar es: " + palabraBuscarTratado)
             vectorFiltrado = vector.filter(atleta => 
                 atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado) ||
-                atleta.data.nacionalidad.toLowerCase().includes(palabraBuscarTratado))
+                atleta.data.nacionalidad.toLowerCase().includes(palabraBuscarTratado) ||
+                (parseInt(atleta.data.mundiales_participados) === parseInt(palabraBuscarTratado)))
         }
 
         // console.log(vectorFiltrado)

@@ -532,7 +532,7 @@ describe("Plantilla.buscar", function () {
         }
     }
     ];
-    
+
     it("Debería filtrar correctamente por nombre", () => {
         let palabraBuscarTratado = "Juan";
         vectorFiltrado = vector.filter(atleta => 
@@ -599,6 +599,31 @@ describe("Plantilla.buscar", function () {
 
     it("Debería filtrar correctamente por nacionalidad cuando la búsqueda no encuentra coincidencias", () => {
         let palabraBuscarTratado = "Francia";
+        vectorFiltrado = vector.filter(atleta => 
+            atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
+            atleta.data.nacionalidad.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
+            (parseInt(atleta.data.mundiales_participados) === parseInt(palabraBuscarTratado)) ||
+            atleta.data.categoría.toLowerCase().includes(palabraBuscarTratado.toLowerCase())
+            )
+
+        expect(vectorFiltrado.length).toBe(0);
+    });
+
+    it("Debería filtrar correctamente por mundiales_participados", () => {
+        let palabraBuscarTratado = "3";
+        vectorFiltrado = vector.filter(atleta => 
+            atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
+            atleta.data.nacionalidad.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
+            (parseInt(atleta.data.mundiales_participados) === parseInt(palabraBuscarTratado)) ||
+            atleta.data.categoría.toLowerCase().includes(palabraBuscarTratado.toLowerCase())
+            )
+
+        expect(vectorFiltrado.length).toBe(1);
+        expect(vectorFiltrado[0].data.mundiales_participados).toBe(3);
+    });
+
+    it("Debería filtrar correctamente por mundiales_participados cuando la búsqueda no encuentra coincidencias", () => {
+        let palabraBuscarTratado = "4";
         vectorFiltrado = vector.filter(atleta => 
             atleta.data.nombre.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
             atleta.data.nacionalidad.toLowerCase().includes(palabraBuscarTratado.toLowerCase()) ||
