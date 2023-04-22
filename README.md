@@ -459,13 +459,13 @@ Por Número de Mundiales Participados:
 
 ![Alt text](assets/img/Incremento%203%20-%2009_2.PNG) 
 
-![Alt text](assets/img/Incremento%203%20-%2009_3.PNG)
+![Alt text](assets/img/Incremento%203%20-%2009_3.png)
 
 Por Categoría:
 
-![Alt text](assets/img/Incremento%203%20-%2009_4.PNG) 
+![Alt text](assets/img/Incremento%203%20-%2009_4.png) 
 
-![Alt text](assets/img/Incremento%203%20-%2009_5.PNG)
+![Alt text](assets/img/Incremento%203%20-%2009_5.png)
 
 ### HU - 12
 La última HU en completar fue la 12 (Modificar el nombre de un atleta). Para ello he tenido que hacer varias cosas: Un nuevo método en routes.js llamado setNombre y su correspondiente en callbacks.js que modificará la base de datos con los parámetros suministrados en el body de la petición post.
@@ -474,19 +474,19 @@ En ms-plantilla.js he añadido un botón junto con un campo de texto para escrib
 
 Aquí vemos el como queda la tabla:
 
-![Alt text](assets/img/Incremento%203%20-%2012_0.PNG) 
+![Alt text](assets/img/Incremento%203%20-%2012_0.png) 
 
 Cuando se pulsa el botón, se muestran los datos:
 
-![Alt text](assets/img/Incremento%203%20-%2012_1.PNG)
+![Alt text](assets/img/Incremento%203%20-%2012_1.png)
 
 Y si se vuelve al listado completo, aparece modificado:
 
-![Alt text](assets/img/Incremento%203%20-%2012_2.PNG) 
+![Alt text](assets/img/Incremento%203%20-%2012_2.png) 
 
 Al igual que en la base de datos:
 
-![Alt text](assets/img/Incremento%203%20-%2012_3.PNG)
+![Alt text](assets/img/Incremento%203%20-%2012_3.png)
 
 ### Tablero de trello al final
 ![Alt text](assets/img/Incremento%203%20-%20final.PNG)
