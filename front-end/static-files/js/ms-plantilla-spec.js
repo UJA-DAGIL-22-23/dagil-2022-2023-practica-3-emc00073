@@ -53,6 +53,7 @@ describe("Cabecera table ", function () {
             <th onclick="Plantilla.imprimeOrdenadoAñosMundiales()">Años mundiales</th>
             <th onclick="Plantilla.imprimeOrdenadoCategoria()">Categoría</th>
             <th>Mostrar</th>
+            <th>Modificar Nombre</th>
         </thead>
         <tbody>
     `);
@@ -91,6 +92,11 @@ describe("cuerpoTr ", function () {
     let msj = Plantilla.cuerpoTr(d)
     
     // Realizo los expect
+    it("debería devolver una fila de tabla con el título igual al ID del atleta",
+        function () {
+            expect(msj.includes(`title="${d.ref['@ref'].id}"`)).toBeTrue();
+        });
+    
     it("debería devolver una fila de tabla con el nombre del atleta",
         function () {
             expect(msj.includes(d.data.nombre)).toBeTrue();
@@ -119,6 +125,22 @@ describe("cuerpoTr ", function () {
     it("debería devolver una fila de tabla con la categoría del atleta",
         function () {
             expect(msj.includes(d.data.categoría)).toBeTrue();
+        });
+    
+    it("debería devolver una fila de tabla con un enlace que muestre los detalles del atleta",
+        function () {
+            expect(msj.includes(`href="javascript:Plantilla.recuperaUnAtleta('${d.ref['@ref'].id}')"`)).toBeTrue();
+        });
+    
+    it("debería devolver una fila de tabla con un campo de entrada para el nuevo nombre del atleta",
+        function () {
+            expect(msj.includes(`id="nombre-atleta-${d.ref['@ref'].id}"`)).toBeTrue();
+            expect(msj.includes('placeholder="Nuevo nombre"')).toBeTrue();
+        });
+    
+    it("debería devolver una fila de tabla con un botón para cambiar el nombre del atleta",
+        function () {
+            expect(msj.includes(`onclick="Plantilla.setNombre('${d.ref['@ref'].id}', document.getElementById('nombre-atleta-${d.ref['@ref'].id}').value)"`)).toBeTrue();
         });
 });
 
@@ -671,6 +693,59 @@ describe("Plantilla.buscar", function () {
 
         expect(vectorFiltrado.length).toBe(0);
     });
+});
+
+describe("setNombre", function () {
+
+it("debería actualizar la información del atleta en la tabla",
+async function () {
+    const ID = "361634138868941004";
+    const nombre = "Nuevo nombre";
+    spyOn(window, 'fetch').and.returnValue(Promise.resolve({json: () => ({
+        ref: {
+            "@ref": {
+                "id": "361634138868941004",
+            }
+        },
+        data: {
+            "nombre": "Nuevo nombre",
+            "fecha_nacimiento": {
+                "dia": 20,
+                "mes": 7,
+                "año": 1995
+            },
+            "nacionalidad": "España",
+            "mundiales_participados": 2,
+            "años_mundiales": [
+                2017,
+                2019
+            ],
+            "categoría": "Salto de altura"
+        }
+    })}));
+
+    spyOn(Frontend.Article, 'actualizar');
+
+    await Plantilla.setNombre(ID, nombre);
+
+    expect(Frontend.Article.actualizar).toHaveBeenCalledWith(
+        "Atleta modificado",
+        jasmine.stringMatching(`<td><em>${nombre}</em></td>`)
+    );
+});
+
+it("debería mostrar un mensaje de error si no se puede acceder al API Gateway",
+async function () {
+    spyOn(window, 'fetch').and.throwError("Failed to fetch");
+
+    spyOn(window, 'alert');
+
+    const ID = "361634138868941004";
+    const nombre = "Nuevo nombre";
+    await Plantilla.setNombre(ID, nombre);
+
+    expect(window.alert).toHaveBeenCalledWith("Error: No se han podido acceder al API Gateway");
+});
 });
 
 /*

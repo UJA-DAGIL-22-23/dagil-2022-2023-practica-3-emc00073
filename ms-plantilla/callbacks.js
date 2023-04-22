@@ -110,26 +110,25 @@ const CB_MODEL_SELECTS = {
     */
     setNombre: async (req, res) => {        
         try {
-            const id = req.query.id
-            const nombre = req.query.nombre
-
+            const { id, nombre } = req.body;
+    
             //Actualiza al atleta con el id asignado con el nuevo nombre
             const atleta = await client.query(
                 q.Update(q.Ref(q.Collection("Atletas"), id), {
                     data: {
-                    nombre: nombre
+                        nombre: nombre
                     }
                 })
-            );
-
+            )
+    
             CORS(res)
                 .status(200)
-                .json(atleta)
-
+                .send(atleta)
+    
         } catch (error) {
             CORS(res).status(500).json({ error: error.description })
         }
-    }
+    },
 }
 
 

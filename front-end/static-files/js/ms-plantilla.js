@@ -400,6 +400,46 @@ Plantilla.buscar = async function () {
     }
 }
 
+/**
+ * Función que recuperar un atleta llamando al MS Plantilla
+ */
+Plantilla.setNombre = async function (ID, nombre) {
+    let response = null
+
+    console.log("setNombre" + ID + nombre)
+
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/setNombre";
+        response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                id: ID,
+                nombre: nombre
+            })
+        });
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway");
+        console.error(error);
+    }
+
+    let atleta = null
+    if (response) {
+        atleta = await response.json()
+
+        let msj = "";
+        msj += Plantilla.cabeceraTable();
+        msj += Plantilla.cuerpoTr(atleta);
+        msj += Plantilla.pieTable();
+
+        // Borro toda la info de Article y la sustituyo por la que me interesa
+        Frontend.Article.actualizar( "Atleta modificado", msj )
+    }
+}
+
 // Funciones para mostrar como TABLE
 
 /**
@@ -422,6 +462,7 @@ Plantilla.cabeceraTable = function () {
             <th onclick="Plantilla.imprimeOrdenadoAñosMundiales()">Años mundiales</th>
             <th onclick="Plantilla.imprimeOrdenadoCategoria()">Categoría</th>
             <th>Mostrar</th>
+            <th>Modificar Nombre</th>
         </thead>
         <tbody>
     `;
@@ -445,6 +486,12 @@ Plantilla.cuerpoTr = function (a) {
             <td>${d.categoría}</td>
             <td>
                 <div><a href="javascript:Plantilla.recuperaUnAtleta('${a.ref['@ref'].id}')">Mostrar</a></div>
+            </td>
+            <td>
+                <div>
+                    <input type="text" id="nombre-atleta-${a.ref['@ref'].id}" style="text-align: center;" placeholder="Nuevo nombre">
+                    <button onclick="Plantilla.setNombre('${a.ref['@ref'].id}', document.getElementById('nombre-atleta-${a.ref['@ref'].id}').value)">Cambiar nombre</button>
+                </div>
             </td>
             </tr>`;
 }

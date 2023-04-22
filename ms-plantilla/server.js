@@ -10,7 +10,7 @@ const app = express()
 // Necesario para poder obtener los datos en las llamadas POST
 const bodyParser = require("body-parser")
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // Necesario para gestionar el conjunto de callbacks para las distintas funciones REST
 const routes = require("./routes")

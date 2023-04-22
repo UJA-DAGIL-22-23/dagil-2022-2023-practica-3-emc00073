@@ -91,21 +91,28 @@ describe('Servidor PLANTILLA:', () => {
           .expect(200)
           .expect('Content-Type', /json/)
           .expect(function (res) {
-            console.log(res.body.ref['@ref'].id)
+            //console.log(res.body.ref['@ref'].id)
             assert(res.body.ref['@ref'].id === "361633960436957388");
           })
           .end((error) => { error ? done.fail(error) : done(); });
       });
 
-      it('Devuelve el atleta modificando su nombre con id "361633960436957388"', (done) => {
+      it('Devuelve el atleta modificando su nombre con id "361634138868941004"', (done) => {
+        // Crea un objeto con los parámetros que se van a enviar a la función setNombre()
+        const parametros = {
+          id: "361634138868941004", // id del jugador que se va a actualizar
+          nombre: "NombrePrueba" // nuevo nombre que se va a asignar al jugador
+        };
+
         supertest(app)
-          .get('/setNombre?id=361633960436957388&nombre=NombrePrueba')
+          .post('/setNombre')
+          .send(parametros)
           .expect(200)
           .expect('Content-Type', /json/)
           .expect(function (res) {
-            console.log(res.body.ref['@ref'].id)
-            assert(res.body.ref['@ref'].id === "361633960436957388");
-            assert(res.body.ref['@ref'].nombre === "NombrePrueba");
+            console.log("Nombre: " + res.body.data.nombre + ", ID:" + res.body.ref['@ref'].id)
+            assert(res.body.ref['@ref'].id === "361634138868941004");
+            assert(res.body.data.nombre === "NombrePrueba");
           })
           .end((error) => { error ? done.fail(error) : done(); });
       });
