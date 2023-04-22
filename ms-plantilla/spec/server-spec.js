@@ -96,6 +96,19 @@ describe('Servidor PLANTILLA:', () => {
           })
           .end((error) => { error ? done.fail(error) : done(); });
       });
+
+      it('Devuelve el atleta modificando su nombre con id "361633960436957388"', (done) => {
+        supertest(app)
+          .get('/setNombre?id=361633960436957388&nombre=NombrePrueba')
+          .expect(200)
+          .expect('Content-Type', /json/)
+          .expect(function (res) {
+            console.log(res.body.ref['@ref'].id)
+            assert(res.body.ref['@ref'].id === "361633960436957388");
+            assert(res.body.ref['@ref'].nombre === "NombrePrueba");
+          })
+          .end((error) => { error ? done.fail(error) : done(); });
+      });
   })
 
 
