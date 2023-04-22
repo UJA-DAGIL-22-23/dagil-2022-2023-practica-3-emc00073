@@ -18,6 +18,344 @@ Para este incremento, crearé y configuraré la base de datos y realizaré las H
 ![Alt text](assets/img/Fauna-bbdd.PNG) 
 ![Alt text](assets/img/Fauna-documents.PNG)
 
+#### Documentos en formato json:
+```json
+[
+    {
+        "ref": {
+            "@ref": {
+                "id": "361633960436957388",
+                "collection": {
+                    "@ref": {
+                        "id": "Atletas",
+                        "collection": {
+                            "@ref": {
+                                "id": "collections"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ts": 1682160830810000,
+        "data": {
+            "nombre": "Juan Pérez",
+            "fecha_nacimiento": {
+                "dia": 12,
+                "mes": 5,
+                "año": 1990
+            },
+            "nacionalidad": "México",
+            "mundiales_participados": 3,
+            "años_mundiales": [
+                2015,
+                2017,
+                2019
+            ],
+            "categoría": "100 metros lisos"
+        }
+    },
+    {
+        "ref": {
+            "@ref": {
+                "id": "361634138868941004",
+                "collection": {
+                    "@ref": {
+                        "id": "Atletas",
+                        "collection": {
+                            "@ref": {
+                                "id": "collections"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ts": 1682161183380000,
+        "data": {
+            "nombre": "Linda",
+            "fecha_nacimiento": {
+                "dia": 20,
+                "mes": 7,
+                "año": 1995
+            },
+            "nacionalidad": "España",
+            "mundiales_participados": 2,
+            "años_mundiales": [
+                2017,
+                2019
+            ],
+            "categoría": "Salto de altura"
+        }
+    },
+    {
+        "ref": {
+            "@ref": {
+                "id": "361634322155831500",
+                "collection": {
+                    "@ref": {
+                        "id": "Atletas",
+                        "collection": {
+                            "@ref": {
+                                "id": "collections"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ts": 1682162258415000,
+        "data": {
+            "nombre": "JUANITA",
+            "fecha_nacimiento": {
+                "dia": 1,
+                "mes": 2,
+                "año": 1992
+            },
+            "nacionalidad": "Egipto",
+            "mundiales_participados": 4,
+            "años_mundiales": [
+                2013,
+                2015,
+                2017,
+                2019
+            ],
+            "categoría": "Lanzamiento de disco"
+        }
+    },
+    {
+        "ref": {
+            "@ref": {
+                "id": "361634452213858508",
+                "collection": {
+                    "@ref": {
+                        "id": "Atletas",
+                        "collection": {
+                            "@ref": {
+                                "id": "collections"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ts": 1681140339020000,
+        "data": {
+            "nombre": "Luisa Ramírez",
+            "fecha_nacimiento": {
+                "dia": 18,
+                "mes": 12,
+                "año": 1994
+            },
+            "nacionalidad": "Colombia",
+            "mundiales_participados": 1,
+            "años_mundiales": [
+                2019
+            ],
+            "categoría": "Salto con pértiga"
+        }
+    },
+    {
+        "ref": {
+            "@ref": {
+                "id": "361634510185431245",
+                "collection": {
+                    "@ref": {
+                        "id": "Atletas",
+                        "collection": {
+                            "@ref": {
+                                "id": "collections"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ts": 1681140394300000,
+        "data": {
+            "nombre": "Hassan Ali",
+            "fecha_nacimiento": {
+                "dia": 30,
+                "mes": 6,
+                "año": 1991
+            },
+            "nacionalidad": "Qatar",
+            "mundiales_participados": 2,
+            "años_mundiales": [
+                2015,
+                2019
+            ],
+            "categoría": "400 metros lisos"
+        }
+    },
+    {
+        "ref": {
+            "@ref": {
+                "id": "361634602048028877",
+                "collection": {
+                    "@ref": {
+                        "id": "Atletas",
+                        "collection": {
+                            "@ref": {
+                                "id": "collections"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ts": 1681140481910000,
+        "data": {
+            "nombre": "María González",
+            "fecha_nacimiento": {
+                "dia": 10,
+                "mes": 9,
+                "año": 1993
+            },
+            "nacionalidad": "Argentina",
+            "mundiales_participados": 3,
+            "años_mundiales": [
+                2015,
+                2017,
+                2019
+            ],
+            "categoría": "Lanzamiento de martillo"
+        }
+    },
+    {
+        "ref": {
+            "@ref": {
+                "id": "361634722198061260",
+                "collection": {
+                    "@ref": {
+                        "id": "Atletas",
+                        "collection": {
+                            "@ref": {
+                                "id": "collections"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ts": 1681140596500000,
+        "data": {
+            "nombre": "Said Ahmed",
+            "fecha_nacimiento": {
+                "dia": 25,
+                "mes": 3,
+                "año": 1989
+            },
+            "nacionalidad": "Sudán",
+            "mundiales_participados": 1,
+            "años_mundiales": [
+                2019
+            ],
+            "categoría": "100 metros lisos"
+        }
+    },
+    {
+        "ref": {
+            "@ref": {
+                "id": "361634872075223244",
+                "collection": {
+                    "@ref": {
+                        "id": "Atletas",
+                        "collection": {
+                            "@ref": {
+                                "id": "collections"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ts": 1681140739430000,
+        "data": {
+            "nombre": "Katrina Ivanova",
+            "fecha_nacimiento": {
+                "dia": 27,
+                "mes": 11,
+                "año": 1996
+            },
+            "nacionalidad": "Rusia",
+            "mundiales_participados": 2,
+            "años_mundiales": [
+                2017,
+                2019
+            ],
+            "categoría": "Salto de longitud"
+        }
+    },
+    {
+        "ref": {
+            "@ref": {
+                "id": "361634940839788748",
+                "collection": {
+                    "@ref": {
+                        "id": "Atletas",
+                        "collection": {
+                            "@ref": {
+                                "id": "collections"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ts": 1681140805010000,
+        "data": {
+            "nombre": "Tariq Khan",
+            "fecha_nacimiento": {
+                "dia": 6,
+                "mes": 8,
+                "año": 1990
+            },
+            "nacionalidad": "Pakistan",
+            "mundiales_participados": 3,
+            "años_mundiales": [
+                2015,
+                2017,
+                2019
+            ],
+            "categoría": "Lanzamiento de disco"
+        }
+    },
+    {
+        "ref": {
+            "@ref": {
+                "id": "361635014919585997",
+                "collection": {
+                    "@ref": {
+                        "id": "Atletas",
+                        "collection": {
+                            "@ref": {
+                                "id": "collections"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ts": 1681140875680000,
+        "data": {
+            "nombre": "Fanny Johnson",
+            "fecha_nacimiento": {
+                "dia": 12,
+                "mes": 4,
+                "año": 1992
+            },
+            "nacionalidad": "Suecia",
+            "mundiales_participados": 1,
+            "años_mundiales": [
+                2019
+            ],
+            "categoría": "Lanzamiento de martillo"
+        }
+    }
+]
+```
+
 ### Tablero de trello al inicio
 ![Alt text](assets/img/Incremento%201%20-%20inicio.PNG)
 
@@ -97,6 +435,8 @@ Para este incremento, realizaré las HU 8, 9 y 12. Las elegí porque no tengo qu
 ### Tablero de trello al inicio
 ![Alt text](assets/img/Incremento%203%20-%20inicio.PNG)
 
+Hay un error en la numeración de las HU, el 7 debería ser un 8 y el 8 debería ser un 9. Lo corrijo más adelante.
+
 ### HU - 08
 La primera historia de usuario en realizar fue la 8 (buscar atletas por su nombre). Para esto he tenido que crear un método nuevo: buscar; y un botón en lo alto de la tabla por el que se le pasará la palabra a buscar. Este método se encarga de recuperar de la base de datos los atletas, filtrarlos y mostrarlos en una tabla.
 
@@ -126,3 +466,27 @@ Por Categoría:
 ![Alt text](assets/img/Incremento%203%20-%2009_4.PNG) 
 
 ![Alt text](assets/img/Incremento%203%20-%2009_5.PNG)
+
+### HU - 12
+La última HU en completar fue la 12 (Modificar el nombre de un atleta). Para ello he tenido que hacer varias cosas: Un nuevo método en routes.js llamado setNombre y su correspondiente en callbacks.js que modificará la base de datos con los parámetros suministrados en el body de la petición post.
+
+En ms-plantilla.js he añadido un botón junto con un campo de texto para escribir el nuevo nombre, lo que llamará a la nueva función Plantilla.setNombre. Esta función se encargará de preparar la petición post con el ID y el nuevo nombre y posteriormente mostrar los datos del atleta modificado.
+
+Aquí vemos el como queda la tabla:
+
+![Alt text](assets/img/Incremento%203%20-%2012_0.PNG) 
+
+Cuando se pulsa el botón, se muestran los datos:
+
+![Alt text](assets/img/Incremento%203%20-%2012_1.PNG)
+
+Y si se vuelve al listado completo, aparece modificado:
+
+![Alt text](assets/img/Incremento%203%20-%2012_2.PNG) 
+
+Al igual que en la base de datos:
+
+![Alt text](assets/img/Incremento%203%20-%2012_3.PNG)
+
+### Tablero de trello al final
+![Alt text](assets/img/Incremento%203%20-%20final.PNG)
